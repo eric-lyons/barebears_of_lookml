@@ -2,7 +2,6 @@ connection: "thelook"
 
 # include all the views
 include: "/views/**/*.view"
-include: "/eric@thebesteverlookmld@shboard.dashboard"
 
 datagroup: eric_likes_bears_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -146,11 +145,18 @@ test: order_id_is_unique {
 explore: users {
   from: users
   view_name: users
- # sql_always_where: ${letter_yesno} =  True ;;
+  always_filter: {
+    filters: [state: "New Jersey"]
+  }
 }
 
+
 explore: extended_users_explore  {
+  #fields: [-state]
   extends: [users]
   from: extended_users
   view_name: extended_users
+   always_filter: {
+    filters: [state: ""]
+  }
 }

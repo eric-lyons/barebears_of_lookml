@@ -3,6 +3,21 @@ view: order_items {
   drill_fields: [id]
   view_label: "10"
 
+  parameter: days {
+    type: number
+    allowed_value: { label: "45 Days ago" value: "45" }
+    allowed_value: { label: "30 Days ago" value: "30" }
+    allowed_value: { label: "15 Days ago" value: "15" }
+    allowed_value: { label: "10 Days ago" value: "10" }
+    allowed_value: { label: "all time" value: "3650" }
+
+  }
+
+  dimension: day_to_number {
+    type: yesno
+    sql: {% parameter days %} >= 20 ;;
+  }
+
   dimension: id {
     primary_key: yes
     type: number

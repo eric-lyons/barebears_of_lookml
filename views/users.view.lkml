@@ -7,17 +7,25 @@ view: users {
     type: date_time
   }
 
-  parameter: datetime {
-    type: date_time
+  parameter: salary {
+    type: number
   }
+
+  measure: salarydim {
+    type: number
+    sql: ${max_age} * {% parameter salary %} ;;
+
+  }
+
+  measure: max_age {
+    type: max
+    sql: ${age} ;;
+  }
+
+
 
   parameter: date {
     type: date
-  }
-
-  dimension: datetimedim {
-    type: string
-    sql: {% parameter datetime %} ;;
   }
 
   dimension: filter_val1 {
@@ -41,6 +49,26 @@ view: users {
 
 
 }
+
+parameter: first {
+type:  string
+  suggest_dimension: first_name
+
+}
+
+  parameter: last {
+    type:  string
+    allowed_value: { value: "Smith" label: "Smith" }
+    allowed_value: { value: "Jones" label:"Jones" }
+    allowed_value: { value: "Brewster" label:"Brewster" }
+
+  }
+
+  dimension: full_name {
+    type: string
+    sql: CONCAT({% parameter first%}," ", {% parameter last %}) ;;
+  }
+
 
     parameter: state_picker {
       label: "state_picker"
@@ -202,7 +230,7 @@ view: users {
   dimension: id {
     primary_key: yes
     type: number
-    sql: ${TABLE}.id ;;
+    sql: ${TABLE}.id*1000 ;;
   }
 
   dimension: age {
@@ -318,14 +346,47 @@ parameter: change {
     sql: ${TABLE}.last_name ;;
   }
 
+    dimension: new_email {
+      type: string
+      sql: ${TABLE}.email ;;
+      tags: ["email"]
+      action: {
+        label: "Data Action Example "
+        url: "https://hooks.zapier.com/hooks/catch/8519594/owdnwcz/silent/"
+        form_param: {
+          name: "Pick your favorite Beatle"
+          type: string
+          label: "Beatles"
+          required: yes
+          option: {
+            label: "Singer"
+            name: "John"
+          }
+          option: {
+            label: "Drummer"
+            name: "Ringo"
+          }
+          option: {
+            label: "Guitar"
+            name: "George"
+          }
+          option: {
+            label: "Bass"
+            name: "Paul"
+          }
+          option: {
+            label: "Friend"
+            name: "Yoko"
+          }}}
+    }
+
+
   dimension: state {
     type: string
     sql: ${TABLE}.state ;;
-    link: {
-      label: "TEST Drill Look"
-      url:"/looks/1955"
+
     }
-  }
+
 
   dimension: crazy_test {
     type: string
