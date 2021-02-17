@@ -30,7 +30,8 @@ view: inventory_items {
     type: time
     timeframes: [
       raw,
-      time,
+      day_of_year,
+      month_name,
       date,
       week,
       month,
@@ -39,6 +40,28 @@ view: inventory_items {
     ]
     sql: ${TABLE}.created_at ;;
   }
+
+  measure: measure_date {
+    sql: ${created_date} ;;
+    type: date
+  }
+
+  dimension: last_year {
+    type: date
+    sql: DATE_SUB(${created_month}, INTERVAL 1 Month) ;;
+  }
+
+  dimension: yesnolastyear {
+    type: yesno
+    sql: ${last_year} = ${created_month} ;;
+  }
+
+  measure: last_year_count {
+    type: count
+    filters: [yesnolastyear: "yes"]
+  }
+
+
 
   dimension: diff {
     sql: DATEDIFF(${sold_date}, ${created_date}) ;;

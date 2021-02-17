@@ -18,6 +18,16 @@ view: events {
     sql: NULL ;;
   }
 
+  dimension: current {
+    type: string
+    sql: current_date() ;;
+  }
+
+  dimension: day {
+    type: number
+    sql: EXTRACT(date from ${current}) ;;
+  }
+
 
 
   parameter: date {

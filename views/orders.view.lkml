@@ -6,6 +6,107 @@ view: orders {
     type: string
   }
 
+  dimension_group: current {
+    type: time
+    datatype: date
+    timeframes: [date,raw]
+    sql: curdate() ;;
+  }
+  dimension: day {
+    type: number
+    sql: DAYOFMONTH(${current_raw}) ;;
+  }
+
+  dimension: first_day_of_month {
+    type: date
+    sql: DATE_SUB(${current_raw}, INTERVAL ${day}-1 DAY) ;;
+  }
+
+  dimension: date_diff {
+    type: yesno
+    sql: DATEDIFF( ${created_date}, ${first_day_of_month}) < ${day} - 1 AND DATEDIFF( ${created_date}, ${first_day_of_month}) > 0 ;;
+  }
+
+
+  filter: reporting_date {
+    label: "Reporting Date Filter"
+    description: "Rerpoting date filter"
+    type: date
+  }
+
+  dimension: date_group_charts {
+    label: "Date Grouping"
+    type: string
+    sql:
+    {% if allowed_date_ranges._parameter_value == "'Last Quarter'" %}
+    ${created_month}
+    {% elsif allowed_date_ranges._parameter_value == "'Custom'" %}
+   ${created_month}
+    {% else %}
+   ${created_date}
+    {% endif %}
+    ;;
+    html:
+   {% if allowed_date_ranges._parameter_value == "'Last Quarter'" %}
+    {{ rendered_value | append: "-01" | date: "%b" }}
+    {% elsif allowed_date_ranges._parameter_value == "'Custom'" %}
+    {{ rendered_value | append: "-01" | date: "%b" }}
+    {% else %}
+    {{ rendered_value | date: "%b %d" }}
+    {% endif %}
+    ;;
+  }
+
+  parameter: allowed_date_ranges {
+    type: string
+    allowed_value: {
+      value: "Yesterday"
+      label: "Yesterday"
+    }
+    allowed_value: {
+      value: "Two Days Ago"
+      label: "Two Days Ago"
+    }
+    allowed_value: {
+      value: "Last 7 Days"
+      label: "Last 7 Days"
+    }
+    allowed_value: {
+      value: "Last 30 Days"
+      label: "Last 30 Days"
+    }
+    allowed_value: {
+      value: "This Week"
+      label: "This Week"
+    }
+    allowed_value: {
+      value: "Last Week"
+      label: "Last Week"
+    }
+    allowed_value: {
+      value: "This Month"
+      label: "This Month"
+    }
+    allowed_value: {
+      value: "Last Month"
+      label: "Last Month"
+    }
+    allowed_value: {
+      value: "This Quarter"
+      label: "This Quarter"
+    }
+    allowed_value: {
+      value: "Last Quarter"
+      label: "Last Quarter"
+    }
+    allowed_value: {
+      value: "Custom"
+      label: "Custom"
+    }
+  }
+
+
+
 
   parameter: date {
     type: number
@@ -26,9 +127,7 @@ view: orders {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
-    html: {% for counter in (0..9) %}
-    {{counter}} {{value}}
-      {% endfor %} ;;
+
   }
 
   dimension_group: created {

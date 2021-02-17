@@ -7,6 +7,8 @@ view: users {
     type: date_time
   }
 
+  parameter: test {}
+
   parameter: salary {
     type: number
   }
@@ -15,6 +17,16 @@ view: users {
     type: number
     sql: ${max_age} * {% parameter salary %} ;;
 
+  }
+
+  parameter: weight {
+    type: number
+
+  }
+
+  measure: real_weight {
+    type: number
+    sql:  {% parameter weight %} ;;
   }
 
   measure: max_age {
