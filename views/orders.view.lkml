@@ -6,6 +6,12 @@ view: orders {
     type: string
   }
 
+  measure: count_new {
+    type: count_distinct
+    sql: ${id} ;;
+    filters: [id: "NOT 1"]
+  }
+
   dimension_group: current {
     type: time
     datatype: date
@@ -225,6 +231,7 @@ view: orders {
 
   measure: count {
     type: count
+    }
     # html:
     # {% if value < 100 %}
     # <div class="vis" style="width: 400px; background-color: #808080; border: 2px solid #000;
@@ -246,5 +253,5 @@ view: orders {
     # border-radius: 15px; -moz-border-radius: 15px;">{{ rendered_value }}
     # </div></div>
     # {% endif %};;
-  }
+
 }

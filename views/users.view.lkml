@@ -7,6 +7,16 @@ view: users {
     type: date_time
   }
 
+  dimension: yesno_gender {
+    type: yesno
+    sql: ${gender} = "f";;
+  }
+
+  dimension: yesno_ny {
+    type: yesno
+    sql: ${state} = "NY" ;;
+  }
+
   parameter: test {}
 
   parameter: salary {
@@ -358,39 +368,39 @@ parameter: change {
     sql: ${TABLE}.last_name ;;
   }
 
-    dimension: new_email {
-      type: string
-      sql: ${TABLE}.email ;;
-      tags: ["email"]
-      action: {
-        label: "Data Action Example "
-        url: "https://hooks.zapier.com/hooks/catch/8519594/owdnwcz/silent/"
-        form_param: {
-          name: "Pick your favorite Beatle"
-          type: string
-          label: "Beatles"
-          required: yes
-          option: {
-            label: "Singer"
-            name: "John"
-          }
-          option: {
-            label: "Drummer"
-            name: "Ringo"
-          }
-          option: {
-            label: "Guitar"
-            name: "George"
-          }
-          option: {
-            label: "Bass"
-            name: "Paul"
-          }
-          option: {
-            label: "Friend"
-            name: "Yoko"
-          }}}
-    }
+    # dimension: new_email {
+    #   type: string
+    #   sql: ${TABLE}.email ;;
+    #   tags: ["email"]
+    #   action: {
+    #     label: "Data Action Example "
+    #     url: "https://hooks.zapier.com/hooks/catch/8519594/owdnwcz/silent/"
+    #     form_param: {
+    #       name: "Pick your favorite Beatle"
+    #       type: string
+    #       label: "Beatles"
+    #       required: yes
+    #       option: {
+    #         label: "Singer"
+    #         name: "John"
+    #       }
+    #       option: {
+    #         label: "Drummer"
+    #         name: "Ringo"
+    #       }
+    #       option: {
+    #         label: "Guitar"
+    #         name: "George"
+    #       }
+    #       option: {
+    #         label: "Bass"
+    #         name: "Paul"
+    #       }
+    #       option: {
+    #         label: "Friend"
+    #         name: "Yoko"
+    #       }}}
+    # }
 
 
   dimension: state {
