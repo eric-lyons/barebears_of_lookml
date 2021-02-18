@@ -14,7 +14,27 @@ view: users {
 
   dimension: yesno_ny {
     type: yesno
-    sql: ${state} = "NY" ;;
+    sql: ${state} = "New York" ;;
+  }
+
+  dimension: case_when {
+    type: string
+    sql: case when ${yesno_gender} = "Yes" then "female" ;;
+  }
+
+  filter: yesno_filter_new {
+    type: yesno
+  }
+
+  dimension: status_satisfies_filter {
+    type: yesno
+    hidden: yes
+    sql: {% condition yesno_filter_new %} ${yesno_gender} {% endcondition %} ;;
+  }
+
+  measure: count_dynamic_status {
+    type: count
+    filters: [status_satisfies_filter: "yes"]
   }
 
   parameter: test {}
