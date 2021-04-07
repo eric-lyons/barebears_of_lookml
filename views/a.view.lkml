@@ -10,6 +10,7 @@ view: a {
       GROUP BY 1,2,3
        ;;
   }
+  #new
 
   measure: count {
     type: count
