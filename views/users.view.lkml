@@ -45,6 +45,7 @@ view: users {
 
   parameter: date {
     type: date
+    required_fields: [datetime]
   }
 
   dimension: minus_three {
