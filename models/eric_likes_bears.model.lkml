@@ -185,9 +185,7 @@ test: order_id_is_unique {
 
 explore: users {
   hidden: yes
-  always_filter: {
-    filters: [date: "2021-09-21"]
-  }
+  sql_always_where: ${users.datetime} OR ${users.date};;
 }
 
 
