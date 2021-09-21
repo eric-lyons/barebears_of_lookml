@@ -6,6 +6,10 @@ view: users {
     type: date_time
   }
 
+  dimension: string {
+    sql: "hello world" ;;
+  }
+
   measure: average_age {
     type: average
     sql: ${age} ;;
@@ -425,19 +429,23 @@ parameter: change {
     type: string
     sql: ${TABLE}.first_name ;;
     html: <a href="https://dcl.dev.looker.com/dashboards-next/1408?Email={{users.email}}">{{value}}</a> ;;
+    link: {
+      label: "Hello Dashboard"
+      url: "/dashboards-next/1408?Email={{users.email}}"
+    }
 
   }
 
 
-      dimension: string {
-        type: string
-        sql: CASE WHEN CURRENT_DATE() IS NOT NULL THEN "Here is a great string""" END ;;
-        link: {
-          label: "Drill Dashboard"
-          url: "dashboards-next/1408?Email={{ _filters['users.email'] | url_encode }}"
-        }
+      # dimension: string2 {
+      #   type: string
+      #   sql: CASE WHEN CURRENT_DATE() IS NOT NULL THEN "Here is a great string""" END ;;
+      #   link: {
+      #     label: "Drill Dashboard"
+      #     url: "dashboards-next/1408?Email={{ _filters['users.email'] | url_encode }}"
+      #   }
 
-      }
+      # }
 
   dimension: gender {
     type: string
@@ -469,14 +477,11 @@ parameter: change {
   dimension: state {
     type: string
     sql: ${TABLE}.state ;;
-    html:
-    {% if value == "New Jersey" %}
-    <p style="color: red; font-size: 50%">{{ rendered_value }}</p>
-    {% elsif value  == "New York" %}
-    <p style="color: blue; font-size:80%">{{ rendered_value }}</p>
-    {% else %}
-     <p style="color: black; font-size:100%">{{ rendered_value }}</p>
-    {% endif %};;
+    drill_fields: [state,email]
+    # link: {
+    #   label: "Drill Dashboard"
+    #   url: "/dashboards/1114?&State={{ _filters['users.state'] | url_encode }}"
+    # }
     }
   dimension: crazy_test {
     type: string
@@ -569,14 +574,10 @@ parameter: change {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
-    # html:
-    # {% if {{value}} >= 1 %}
-    # {{ rendered_value }}
-    # {% elsif {{value}} < 1  %}
-    # {{ value |  round: 3 | times: 100 }}%
-    # {% endif %}
-    ##;;
+       link: {
+        label: "Drill Dashboard"
+        url: "/dashboards/970?State={{users.state}}"
+      }
 
   }
 
