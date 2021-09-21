@@ -45,11 +45,13 @@ view: users {
 
   parameter: datetime {
     type: date_time
+    hidden:  yes
   }
 
   parameter: date {
     type: date
     required_fields: [datetime]
+    hidden:  yes
   }
 
   dimension: minus_three {

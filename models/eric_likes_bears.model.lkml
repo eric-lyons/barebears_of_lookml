@@ -185,7 +185,7 @@ test: order_id_is_unique {
 
 explore: users {
   hidden: yes
-  sql_always_where: ${users.datetime} OR ${users.date};;
+  sql_always_where: ${users.datetime} AND ${users.date};;
 }
 
 
