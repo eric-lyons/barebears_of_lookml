@@ -50,7 +50,6 @@ view: users {
 
   parameter: date {
     type: date
-    required_fields: [datetime]
     hidden:  yes
   }
 
