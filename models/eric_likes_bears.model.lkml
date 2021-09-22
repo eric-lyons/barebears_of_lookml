@@ -115,6 +115,7 @@ explore: events {}
 # }
 
 explore: orders {
+
   join: users {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
@@ -186,6 +187,10 @@ test: order_id_is_unique {
 explore: users {
   always_filter: {
     filters: [date: "", datetime: ""]
+  }
+  join:  orders{
+    sql_on: ${orders.user_id} = ${users.id} ;;
+    relationship: many_to_one
   }
 }
 
