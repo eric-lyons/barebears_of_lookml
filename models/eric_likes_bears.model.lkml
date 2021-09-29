@@ -184,19 +184,9 @@ test: order_id_is_unique {
 
 
 explore: users {
-
-join: orders {
-  sql:
-      {% if ${orders.status} == 'pending' %}
-      INNER JOIN orders
-      ON users.id = orders.user_id
-
-      {% else %}
-
-       {% endif %}
-
-  ;;
-}
+  always_filter: {
+    filters: [date: "", datetime: ""]
+  }
 }
 
 
