@@ -14,6 +14,8 @@ view: users {
     type: average
     sql: ${age} ;;
     html:{{ _user_attributes['eric_liquid_test'] }} ;;
+
+    can_filter: no
   }
 
   dimension:hello_world {
