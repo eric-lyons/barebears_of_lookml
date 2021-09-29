@@ -15,7 +15,7 @@ view: users {
     sql: ${age} ;;
     html:{{ _user_attributes['eric_liquid_test'] }} ;;
 
-    can_filter: no
+
   }
 
   dimension:hello_world {
@@ -268,6 +268,8 @@ view: users {
     {% else %}
     <p style="color: red; font-size: 100%">{{ rendered_value }}</p>
     {% endif %};;
+
+    can_filter: no
 
    }
 
