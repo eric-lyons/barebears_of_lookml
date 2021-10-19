@@ -20,7 +20,7 @@ view: users {
 
   dimension: html_tester {
     type: string
-    sql:  "<p> Hello World! </p>" ;;
+    sql:  "<p> Facebook.com </p>" ;;
     # html: {{ view.html_tester._value }} ;;
 
   }
@@ -28,7 +28,7 @@ view: users {
   dimension: strip_html  {
     type: string
     sql:  "<p>strip html</p>" ;;
-    html: {{ strip_html._value | strip_html }} ;;
+    html: {{ html_tester._value | strip_html }} ;;
   }
 
 
