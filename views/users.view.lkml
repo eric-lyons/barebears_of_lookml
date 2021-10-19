@@ -27,7 +27,8 @@ view: users {
 
   dimension: strip_html  {
     type: string
-    html: {{ html_tester._value | strip_html }} ;;
+    sql:  "strip html" ;;
+    html: {{ strip_html._value | strip_html }} ;;
   }
 
 
@@ -270,6 +271,7 @@ view: users {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    value_format: "0"
   }
 
   dimension: age {
