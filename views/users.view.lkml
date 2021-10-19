@@ -18,6 +18,16 @@ view: users {
 
   }
 
+  dimension: html_tester {
+    type: string
+    sql:  "<p> Hello World! </p>" ;;
+  }
+
+  dimension: strip_html {
+    type: string
+    html: {{ view.html_tester._value }} ;;
+  }
+
   dimension:hello_world {
     type: string
     sql: 1=1 ;;
@@ -341,7 +351,7 @@ parameter: change {
 
   dimension: test {
     type: number
-    sql: hour(${created_time});;
+    #sql: hour(${created_time});;
   }
 
   dimension: country {
