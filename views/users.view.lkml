@@ -27,7 +27,7 @@ view: users {
 
   dimension: strip_html  {
     type: string
-    html: {{value | strip_html}} ;;
+    html: {{ html_tester._value | strip_html }} ;;
   }
 
 
