@@ -187,6 +187,13 @@ explore: users {
   always_filter: {
     filters: [date: "", datetime: ""]
   }
+
+  join: user_data {
+    fields:  [max_num_orders]
+    type:  left_outer
+    sql_on: ${users.id} = ${user_data.user_id} ;;
+
+  }
 }
 
 
