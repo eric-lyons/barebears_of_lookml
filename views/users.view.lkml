@@ -26,6 +26,7 @@ view: users {
   dimension: strip_html {
     type: string
     html: {{ view.html_tester._value }} ;;
+    sql: " h " ;;
   }
 
   dimension:hello_world {
