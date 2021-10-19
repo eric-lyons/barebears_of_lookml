@@ -27,7 +27,7 @@ view: users {
 
   dimension: strip_html  {
     type: string
-    sql:  "strip html" ;;
+    sql:  "<p>strip html</p>" ;;
     html: {{ strip_html._value | strip_html }} ;;
   }
 
