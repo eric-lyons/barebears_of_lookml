@@ -193,6 +193,7 @@ explore: users {
 explore: +orders {
   label: "Sales Totals"
   join: order_items {
+    fields: [order_items.dynamica_sum, order_items.dynamic_field]
     sql_on: ${orders.id} = ${order_items.id} ;;
     relationship: many_to_one
   }
