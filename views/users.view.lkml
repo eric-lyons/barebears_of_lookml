@@ -20,14 +20,14 @@ view: users {
 
   dimension: html_tester {
     type: string
-    sql:  "<p> Facebook.com </p>" ;;
+    sql:  "<p> Looker.com </p>" ;;
     # html: {{ view.html_tester._value }} ;;
 
   }
 
   dimension: strip_html  {
     type: string
-    sql:  "<p>strip html</p>" ;;
+    sql:  "<p>strip html (should be replaced) </p>" ;;
     html: {{ html_tester._value | strip_html }} ;;
   }
 
