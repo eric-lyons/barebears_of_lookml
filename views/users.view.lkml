@@ -21,8 +21,13 @@ view: users {
   dimension: html_tester {
     type: string
     sql:  "<p> Hello World! </p>" ;;
-    html: {{ view.html_tester._value }} ;;
+    # html: {{ view.html_tester._value }} ;;
 
+  }
+
+  dimension: strip_html  {
+    type: string
+    html: {{value | strip_html}} ;;
   }
 
 
