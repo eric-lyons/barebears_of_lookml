@@ -572,7 +572,7 @@ parameter: change {
   }
 
   measure: testyesno {
-    type: sum
+    type: count
     sql:  case when ${sum1} > 0 then 1 else no ;;
   }
 
