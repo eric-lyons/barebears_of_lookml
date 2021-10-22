@@ -571,8 +571,8 @@ parameter: change {
     filters: {field: state value:"New Jersey"}
   }
 
-  dimension: testyesno {
-    type: yesno
+  measure: testyesno {
+    type: sum
     sql:  case when ${sum1} > 0 then 1 else no ;;
   }
 
