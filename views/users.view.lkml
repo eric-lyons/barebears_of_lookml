@@ -599,11 +599,11 @@ parameter: change {
 
   measure: count {
     type: count
-       link: {
-        label: "Drill Dashboard"
-        url: "/dashboards/970?State={{users.state}}"
-      }
-
+      # link: {
+       # label: "Drill Dashboard"
+        #url: "/dashboards/970?State={{users.state}}"
+      #}
+    html:  {{ zip._rendered_value }} ;;
   }
 
       measure: count_tool {
