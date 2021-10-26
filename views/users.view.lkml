@@ -274,6 +274,13 @@ view: users {
     value_format_name:  usd
   }
 
+  dimension: strip_html_id {
+    type: number
+    sql: ${TABLE}.id ;;
+    value_format_name:  usd
+    html:  {{ rendered_value | strip_html }} ;;
+  }
+
   dimension: age {
     type: number
     sql: ${TABLE}.age ;;
