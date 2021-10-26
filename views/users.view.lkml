@@ -271,7 +271,7 @@ view: users {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
-    value_format: "0"
+    value_format_name:  usd
   }
 
   dimension: age {
