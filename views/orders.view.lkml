@@ -115,16 +115,16 @@ measure: eric_case_when_test {
 
   dimension_group: created {
     type: time
-    timeframes: [
-      raw,
-      time,
-      week_of_year,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+    #timeframes: [
+    #  raw,
+   #   time,
+   #   week_of_year,
+  #    date,
+  #    week,
+  #    month,
+  #    quarter,
+ #    year
+  #  ]
     sql: ${TABLE}.created_at ;;
   }
 
