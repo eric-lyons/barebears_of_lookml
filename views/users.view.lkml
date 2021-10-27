@@ -18,6 +18,20 @@ view: users {
 
   }
 
+  measure: sum_age_tester_liquid_tricky {
+    label: "Sum Age tester Liquid Tricky"
+    type: sum
+    sql: ${age} ;;
+    link: {
+      label: "Test link"
+      url: "{{ link }}&fields=users.details*"
+    }
+  }
+
+  set: details {
+    fields: [html_tester, strip_html, hello_world]
+  }
+
   dimension: html_tester {
     type: string
     sql:  "<p> Looker.com </p>" ;;
