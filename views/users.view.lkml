@@ -24,7 +24,7 @@ view: users {
     sql: ${age} ;;
     link: {
       label: "Test link"
-      url: "{{ yahoo.com }}&fields=users.details*"
+      #url: "{{ yahoo.com }}&fields=users.details*"
     }
   }
 
