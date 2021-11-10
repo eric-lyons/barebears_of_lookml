@@ -18,6 +18,28 @@ view: users {
 
   }
 
+  parameter:  testOne {
+  type: string
+  allowed_value: { value: "1 day" }
+  allowed_value: { value: "7 days" }
+  allowed_value: { value: "30 days " }
+  allowed_value: { value: "80 days" }
+  }
+
+
+  parameter: testTwo {
+    type: string
+    allowed_value: { value: "1" }
+    allowed_value: { value: "7" }
+    allowed_value: { value: "30" }
+    allowed_value: { value: "80" }
+  }
+
+  measure: measuretester {
+    type: number
+    sql: ${age} / {% parameter testOne %} * {% parameter testTwo %} ;;
+  }
+
   measure: sum_age_tester_liquid_tricky {
     label: "Sum Age tester Liquid Tricky"
     type: sum
