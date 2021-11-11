@@ -18,22 +18,22 @@ view: users {
 
   }
 
-  #parameter:  testOne {
-  #type: string
+  parameter:  testOne {
+  type: string
   #allowed_value: { value: "1 day" }
   #allowed_value: { value: "7 days" }
   #allowed_value: { value: "30 days " }
   #allowed_value: { value: "80 days" }
-  #}
+  }
 
 
-  #parameter: testTwo {
-  #  type: string
+  parameter: testTwo {
+    type: string
   #  allowed_value: { value: "1" }
   #  allowed_value: { value: "7" }
   #  allowed_value: { value: "30" }
   #  allowed_value: { value: "80" }
-  #}
+  }
 
   measure: measuretester {
     type: number
@@ -419,7 +419,9 @@ parameter: change {
       year,
       month_num
     ]
-    sql: ${TABLE}.created_at ;;
+    sql: TIMESTAMP_SECONDS(${TABLE}.created_at)) ;;
+    # ${TABLE}.date(TIMESTAMP_SECONDS(date)) something along these lines
+
   }
 
   dimension_group: created {
