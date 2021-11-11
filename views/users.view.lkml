@@ -419,7 +419,7 @@ parameter: change {
       year,
       month_num
     ]
-    sql: TIMESTAMP_SECONDS(${TABLE}.created_at)) ;;
+    sql: CAST(${TABLE}.created_at) AS DATE) ;;
     # ${TABLE}.date(TIMESTAMP_SECONDS(date)) something along these lines
 
   }
